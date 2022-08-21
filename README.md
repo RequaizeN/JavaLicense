@@ -8,10 +8,13 @@ After then returns boolean about license status.
 ## Usage
 ```java
 public static void main(String... args) {
-    License license = new LicenseBuilder()
+    License license = new License.LicenseBuilder()
             .setProductName("Test")
             .setLink("https://poyrazinan.com.tr/api/plugin/check.php?plugin={product}&ip={ip}")
             .build();
+    // You can check is something goes wrong with license query.
+    // All you want to do is surrounding license.run() with try and catch
+    // which can cause ConnectionFailureException.
     boolean status = license.run();
     if (!status) {
         // If license couldn't found.
@@ -41,7 +44,7 @@ public static void main(String... args) {
   <dependency>
     <groupId>com.github.poyrazinan</groupId>
     <artifactId>JavaLicense</artifactId>
-    <version>1.0.1</version>
+    <version>1.1</version>
     <scope>compile</scope>
   </dependency>
 </dependencies>
@@ -53,9 +56,12 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.poyrazinan:JavaLicense:1.0.1'
+  implementation 'com.github.poyrazinan:JavaLicense:1.1'
 }
 ```
+
+### Local Dependency
+> You can find jar on releases.
 
 ## Requirements:
 
@@ -72,5 +78,5 @@ dependencies {
   - [Github](https://github.com/JetBrains/java-annotations)
 
 ## Useful links:
-* Web API (php)
+* [Web API (php)](https://github.com/poyrazinan/license-web-api)
 * [Discord Bot for Licenses](https://github.com/poyrazinan/GeikPlugins-Discord-Bot)
