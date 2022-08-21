@@ -75,8 +75,8 @@ public class License {
 
             status = (boolean) new JSONObject(responseStrBuilder.toString()).get("status");
         }
-        catch (Exception e) {
-            throw new ConnectionFailureException("An error occurred when try to connect license server.");
+        catch (IOException e) {
+            System.out.println("Lisans sunucusuna bağlanılamadı veya CURL Hatası");
         }
         finally {
             return status;
@@ -127,15 +127,15 @@ public class License {
          * @return
          * @throws BuilderException
          */
-        public License build() throws BuilderException {
+        public License build() {
             License license = new License(this);
             validateLicense(license);
             return license;
         }
 
-        private void validateLicense(@NotNull License license) throws BuilderException {
+        private void validateLicense(@NotNull License license) {
             if (license.licensedProduct == null || license.ip == null)
-                throw new BuilderException("License creation failure. Make sure to set link and product name.");
+                System.out.println("Lisans objesi oluştururken hata oluştu.");
         }
 
         /**
